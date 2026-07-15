@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: payal-bot
+    env: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    buildCommand: mvn clean package
+    envVars:
+      - key: BOT_TOKEN
+        sync: false
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: CHANNEL_USERNAME
+        value: @your_channel
+      - key: GROUP_USERNAME
+        value: @your_group
+      - key: OWNER_USERNAME
+        value: @your_username
+    healthCheckPath: /health
+    autoDeploy: true
